@@ -1,3 +1,4 @@
+mod boxed_iter;
 mod common;
 mod day1;
 mod day2;

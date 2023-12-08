@@ -1,4 +1,3 @@
-
 use itertools::Itertools;
 
 use crate::common::fetch_input;
@@ -8,9 +7,12 @@ const TEXT_DIGITS: &[&str] =
 
 pub fn day1(part2: bool) {
   // map strings to values
-  let mut str_digit_tbl = ((1..=9).map(|d| (d.to_string(), d))).collect::<Vec<_>>();
+  let mut str_digit_tbl =
+    ((1..=9).map(|d| (d.to_string(), d))).collect::<Vec<_>>();
   if part2 {
-    str_digit_tbl.extend(TEXT_DIGITS.iter().enumerate().map(|(i, s)| (s.to_string(), i + 1)))
+    str_digit_tbl.extend(
+      TEXT_DIGITS.iter().enumerate().map(|(i, s)| (s.to_string(), i + 1)),
+    )
   }
   let output: usize = fetch_input(1)
     .split('\n')

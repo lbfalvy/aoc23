@@ -1,4 +1,4 @@
-use crate::common::{fetch_input_lines};
+use crate::common::fetch_input_lines;
 
 struct Rgb {
   r: usize,
@@ -57,7 +57,12 @@ pub fn day2(part_two: bool) {
     println!("day2 result: {output}")
   } else {
     let output = games
-      .map(|game| game.draws.iter().fold(Rgb{ r: 0, g: 0, b: 0 }, |acc, draw| acc.union(draw)))
+      .map(|game| {
+        game
+          .draws
+          .iter()
+          .fold(Rgb { r: 0, g: 0, b: 0 }, |acc, draw| acc.union(draw))
+      })
       .map(|minset| minset.r * minset.g * minset.b)
       .sum::<usize>();
     println!("day2 part 2 result: {output}")
