@@ -79,11 +79,9 @@ impl Pipe {
   }
 }
 
-pub fn lookup<T>(table: &Vec<Vec<T>>, point: Point) -> &T {
-  &table[point.0][point.1]
-}
+fn lookup<T>(table: &[Vec<T>], point: Point) -> &T { &table[point.0][point.1] }
 
-pub fn lookup_mut<T>(table: &mut Vec<Vec<T>>, point: Point) -> &mut T {
+fn lookup_mut<T>(table: &mut [Vec<T>], point: Point) -> &mut T {
   &mut table[point.0][point.1]
 }
 
@@ -94,10 +92,10 @@ pub fn day10() {
     .map(|(col, l)| {
       l.chars()
         .enumerate()
-        .map(|(line, mut state)| match state {
+        .map(|(line, state)| match state {
           'S' => {
             starting_pos = Point(col, line);
-            Some(Pipe::new('|'))
+            None // To be replaced
           },
           '.' => None,
           state => Some(Pipe::new(state)),
@@ -135,5 +133,9 @@ pub fn day10() {
       break;
     }
   }
-  println!("length = {steps}; /2 = {}; area = {area}, inner = {}", steps / 2, area - steps / 2 + 1)
+  println!(
+    "length = {steps}; /2 = {}; area = {area}, inner = {}",
+    steps / 2,
+    area - steps / 2 + 1
+  )
 }
