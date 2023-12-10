@@ -101,7 +101,7 @@ impl<T: Debug + Clone + Ord + Add<Output = T> + Sub<Output = T>> RangeMap<T> {
   }
 }
 
-pub fn optimize_range_set(mut ranges: Vec<Range<u64>>) -> Vec<Range<u64>> {
+fn optimize_range_set(mut ranges: Vec<Range<u64>>) -> Vec<Range<u64>> {
   ranges.sort_unstable_by_key(|r| r.start);
   let mut old_ranges = ranges.into_iter();
   let mut new_ranges = Vec::new();
@@ -121,7 +121,7 @@ pub fn optimize_range_set(mut ranges: Vec<Range<u64>>) -> Vec<Range<u64>> {
   }
 }
 
-pub fn parse_input(data: &str) -> (Vec<u64>, HashMap<String, RangeMap<u64>>) {
+fn parse_input(data: &str) -> (Vec<u64>, HashMap<String, RangeMap<u64>>) {
   let (seeds_line, tables) = data.split_once('\n').unwrap();
   let seeds = (seeds_line.strip_prefix("seeds: ").unwrap())
     .split(' ')
