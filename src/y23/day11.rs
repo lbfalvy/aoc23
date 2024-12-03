@@ -7,7 +7,9 @@ pub fn day11() {
   let mut rows = HashMap::<u128, u128>::new();
   let mut columns = HashMap::<u128, u128>::new();
   let mut galcnt = 0;
-  for (rown, row) in fetch_input_lines(11).enumerate().map(|(i, d)| (i as u128, d)) {
+  for (rown, row) in
+    fetch_input_lines(11).enumerate().map(|(i, d)| (i as u128, d))
+  {
     for (coln, char) in row.chars().enumerate().map(|(i, d)| (i as u128, d)) {
       if char == '#' {
         galcnt += 1;
@@ -21,7 +23,7 @@ pub fn day11() {
     }
   }
   let process_dimension = |dim: &HashMap<u128, u128>, gap: u128| -> u128 {
-    let mut vec =  dim.iter().map(|(a, b)| (*a, *b)).collect_vec();
+    let mut vec = dim.iter().map(|(a, b)| (*a, *b)).collect_vec();
     vec.sort_unstable_by_key(|(pos, _)| *pos);
     let mut behind = 0;
     let mut total_steps = 0;
@@ -32,6 +34,9 @@ pub fn day11() {
     total_steps
   };
   let total_a = process_dimension(&rows, 2) + process_dimension(&columns, 2);
-  let total_b = process_dimension(&rows, 1000000) + process_dimension(&columns, 1000000);
-  println!("Total distance with expansion of 2: {total_a} and with 1000000: {total_b}");
+  let total_b =
+    process_dimension(&rows, 1000000) + process_dimension(&columns, 1000000);
+  println!(
+    "Total distance with expansion of 2: {total_a} and with 1000000: {total_b}"
+  );
 }
