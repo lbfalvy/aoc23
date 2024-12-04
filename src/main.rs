@@ -3,4 +3,4 @@ mod common;
 mod y23;
 mod y24;
 
-fn main() { y24::day3::day3() }
+fn main() { y24::day4::day4() }
